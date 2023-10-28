@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ba32c0y8m25ht"
+path="res://.godot/imported/Here Come The Raindrops - Reed Mathis.mp3-05e62f8f2e167e1522975dbbe39bdda4.mp3str"
+
+[deps]
+
+source_file="res://assets/Here Come The Raindrops - Reed Mathis.mp3"
+dest_files=["res://.godot/imported/Here Come The Raindrops - Reed Mathis.mp3-05e62f8f2e167e1522975dbbe39bdda4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
