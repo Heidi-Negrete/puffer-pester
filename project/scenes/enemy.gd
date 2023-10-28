@@ -7,7 +7,7 @@ func _ready():
 
 
 func _process(_delta):
-	if position.x < 0:
+	if linear_velocity.x < 0:
 		$AnimatedSprite2D.flip_v = true
 	else:
 		$AnimatedSprite2D.flip_v = false
