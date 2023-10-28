@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://cb85v0od87wlh"]
+[gd_scene load_steps=5 format=3 uid="uid://cb85v0od87wlh"]
 
 [ext_resource type="FontFile" uid="uid://dxy462dlry4l3" path="res://assets/JosefinSans-Bold.ttf" id="1_06mm1"]
 [ext_resource type="Script" path="res://scenes/hud.gd" id="1_r56t1"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_1vpgk"]
+action = &"start_game"
+
+[sub_resource type="Shortcut" id="Shortcut_scnhn"]
+events = [SubResource("InputEventAction_1vpgk")]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_r56t1")
@@ -48,6 +54,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_06mm1")
 theme_override_font_sizes/font_size = 64
+shortcut = SubResource("Shortcut_scnhn")
 text = "Start"
 
 [node name="MessageTimer" type="Timer" parent="."]
