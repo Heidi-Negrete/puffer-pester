@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://cww7tdf46v5je"]
+
+[ext_resource type="Script" path="res://scenes/enemy.gd" id="1_7ssu6"]
+[ext_resource type="Texture2D" uid="uid://d3622n58rcqhq" path="res://assets/fishTile_100.png" id="1_8urlr"]
+[ext_resource type="Texture2D" uid="uid://cscskomjjaorb" path="res://assets/fishTile_101.png" id="2_ocfyn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ab6p7"]
+radius = 23.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a4ib8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8urlr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ocfyn")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 5.0
+}]
+
+[node name="Enemy" type="RigidBody2D"]
+collision_mask = 0
+gravity_scale = 2.66454e-15
+script = ExtResource("1_7ssu6")
+metadata/_edit_group_ = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, 1)
+shape = SubResource("CircleShape2D_ab6p7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_a4ib8")
+animation = &"swim"
+frame = 1
+frame_progress = 0.877776
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
