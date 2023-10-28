@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://dm1lwscp2585y"]
+
+[ext_resource type="Texture2D" uid="uid://chbs5flfncr7y" path="res://assets/fishTile_091.png" id="1_7mmyy"]
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_r0bh1"]
+[ext_resource type="Texture2D" uid="uid://8ke8av0s2m3o" path="res://assets/fishTile_090.png" id="2_ey10w"]
+[ext_resource type="Texture2D" uid="uid://2hvpfcs616hy" path="res://assets/fishTile_072.png" id="3_q7t22"]
+[ext_resource type="Texture2D" uid="uid://dihxq0kphm0pk" path="res://assets/fishTile_073.png" id="4_cdvo7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w7icf"]
+radius = 16.0
+height = 42.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aoba4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7mmyy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ey10w")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_q7t22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_cdvo7")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 5.0
+}]
+
+[node name="Player" type="Area2D"]
+script = ExtResource("1_r0bh1")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5, 2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_w7icf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_aoba4")
+animation = &"swim"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
