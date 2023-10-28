@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cv8lvhqs6f30c"]
+[gd_scene load_steps=7 format=3 uid="uid://cv8lvhqs6f30c"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_n8iro"]
 [ext_resource type="PackedScene" uid="uid://cww7tdf46v5je" path="res://scenes/enemy.tscn" id="2_r3tg7"]
 [ext_resource type="PackedScene" uid="uid://cb85v0od87wlh" path="res://scenes/hud.tscn" id="3_uqucv"]
 [ext_resource type="PackedScene" uid="uid://dm1lwscp2585y" path="res://scenes/player.tscn" id="3_x0jd4"]
+[ext_resource type="Texture2D" uid="uid://dok1dc8uyvauq" path="res://assets/fishTile_089.png" id="4_g1jmp"]
 
 [sub_resource type="Curve2D" id="Curve2D_i34b5"]
 _data = {
@@ -33,6 +34,15 @@ position = Vector2(240, 450)
 curve = SubResource("Curve2D_i34b5")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+
+[node name="SeaBackground" type="TextureRect" parent="."]
+texture_repeat = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_g1jmp")
 
 [node name="Player" parent="." instance=ExtResource("3_x0jd4")]
 
