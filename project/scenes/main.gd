@@ -1,5 +1,6 @@
 extends Node
 
+signal currents_started
 @export var enemy_scene: PackedScene
 var score
 
@@ -41,3 +42,5 @@ func _on_start_timer_timeout():
 func _on_score_timer_timeout():
 	score += 1
 	$HUD.update_score(score)
+	if score == 20:
+		currents_started.emit()

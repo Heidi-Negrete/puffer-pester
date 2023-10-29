@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://3xgv427sakh7"]
+
+[ext_resource type="Script" path="res://scenes/current_manager.gd" id="1_0mrww"]
+
+[node name="CurrentManager" type="Node"]
+script = ExtResource("1_0mrww")
+
+[node name="CurrentTimer" type="Timer" parent="."]
+wait_time = 4.0
+
+[node name="SpawnTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="CurrentTimer" to="." method="_on_current_timer_timeout"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
