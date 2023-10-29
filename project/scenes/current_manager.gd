@@ -14,6 +14,7 @@ func spawn_current():
 			var current = current_scene.instantiate()
 			current.position = Vector2(spawn_origin, spawn_direction)
 			current.z_index = 1
+			current.current_direction = [Vector2(0,-1), Vector2(0,1)].pick_random()
 			current.get_node("AnimatedSprite2D").set_frame_and_progress([0,1,2].pick_random(), 0.0)
 			current.get_node("AnimatedSprite2D").play()
 			get_owner().add_child(current)
@@ -25,6 +26,7 @@ func spawn_current():
 			var current = current_scene.instantiate()
 			current.position = Vector2(spawn_direction, spawn_origin)
 			current.z_index = 1
+			current.current_direction = [Vector2(-1,0), Vector2(1,0)].pick_random()
 			current.get_node("AnimatedSprite2D").set_frame_and_progress([0,1,2].pick_random(), 0.0)
 			current.get_node("AnimatedSprite2D").play()
 			get_owner().add_child(current)
