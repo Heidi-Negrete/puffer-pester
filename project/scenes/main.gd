@@ -23,6 +23,7 @@ func new_game():
 
 func _on_mob_timer_timeout():
 	var enemy = enemy_scene.instantiate()
+	enemy.z_index = 2
 	var spawn_location = $MobPath/MobSpawnLocation
 	spawn_location.progress_ratio = randf()
 	enemy.position = spawn_location.position
@@ -42,5 +43,5 @@ func _on_start_timer_timeout():
 func _on_score_timer_timeout():
 	score += 1
 	$HUD.update_score(score)
-	if score == 20:
+	if score == 2:
 		currents_started.emit()

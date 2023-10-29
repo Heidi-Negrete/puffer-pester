@@ -7,8 +7,11 @@ script = ExtResource("1_0mrww")
 
 [node name="CurrentTimer" type="Timer" parent="."]
 wait_time = 4.0
+one_shot = true
 
 [node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
 
 [connection signal="timeout" from="CurrentTimer" to="." method="_on_current_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

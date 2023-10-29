@@ -1,22 +1,35 @@
 extends Node
 
 @onready var screen_size = get_viewport().get_visible_rect().size
-# returns Vector2 == (480, 720)
+@export var current_scene: PackedScene
 
-'''
-CURRENT LOOP:
-Begin spawning currents when game score = 20.
-Spawn an initial current group and then start currenttimer.
-when current timer expires, the current group is queue_free()'d and the spawn timer starts.
-When spawn timer timeouts, spawn a new currentgroup/start current timer ETC
-
-CURRENT SPAWNING:
-First set spawn_direction to x or y (50/50 chance)
-set spawn_start to random point along x or y as chosen.
-iterate each spawn_position with size of current tile until spawn_position >= width/height of screen as appropriate.
-'''
 
 func spawn_current():
+	var spawn_anchor = ['x', 'y'].pick_random()
+	var spawn_origin
+	var spawn_direction = 0
+	if spawn_anchor == 'x':
+		spawn_origin = randi_range(0, screen_size.x)
+		while spawn_direction < screen_size.y + 48:
+			var current = current_scene.instantiate()
+			current.position = Vector2(spawn_origin, spawn_direction)
+			current.z_index = 1
+			current.get_node("AnimatedSprite2D").set_frame_and_progress([0,1,2].pick_random(), 0.0)
+			current.get_node("AnimatedSprite2D").play()
+			get_owner().add_child(current)
+			current.add_to_group("current")
+			spawn_direction += 48
+	else: #spawn_anchor == y
+		spawn_origin = randi_range(0, screen_size.y)
+		while spawn_direction < screen_size.x + 48:
+			var current = current_scene.instantiate()
+			current.position = Vector2(spawn_direction, spawn_origin)
+			current.z_index = 1
+			current.get_node("AnimatedSprite2D").set_frame_and_progress([0,1,2].pick_random(), 0.0)
+			current.get_node("AnimatedSprite2D").play()
+			get_owner().add_child(current)
+			current.add_to_group("current")
+			spawn_direction += 48
 	$CurrentTimer.start()
 
 func _on_current_timer_timeout():
@@ -26,8 +39,7 @@ func _on_current_timer_timeout():
 
 func _on_spawn_timer_timeout():
 	spawn_current()
-	$CurrentTimer.start()
 
 
 func _on_main_currents_started():
-	spawn_current() # score is now = 20 and can begin spawning currents
+	spawn_current()
